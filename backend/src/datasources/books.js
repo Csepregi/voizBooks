@@ -6,21 +6,25 @@ class BookAPI extends RESTDataSource {
 		this.baseURL = 'https://api.voiz.hu/graphql';
 	}
 
-
-	bookReducer(book) {
-		return {
-			id: book.id,
-			name: book.name,
-			author: book.author,
-		};
+	async getBooks() {
+		const { results } = await this.get("");
+		return results;
 	}
 
-	async getAllBooks() {
-		const response = await this.get('')
-		return Array.isArray(response)
-			? response.map(book => this.bookReducer(book))
-			: [];
-	}
+	// bookReducer(book) {
+	// 	return {
+	// 		id: book.id,
+	// 		name: book.name,
+	// 		author: book.author,
+	// 	};
+	// }
+
+	// async getAllBooks() {
+	// 	const response = await this.get('')
+	// 	return Array.isArray(response)
+	// 		? response.map(book => this.bookReducer(book))
+	// 		: [];
+	// }
 
 }
 
